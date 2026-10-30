@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 260 44" width="260" height="44">
+<defs><pattern id="h" width="14" height="44" patternUnits="userSpaceOnUse" patternTransform="skewX(-35)">
+<rect width="7" height="44" fill="#111"/><rect x="7" width="7" height="44" fill="#fff200"/></pattern></defs>
+<rect width="260" height="44" fill="#111"/><rect width="56" height="44" fill="url(#h)"/>
+<text x="68" y="19" font-family="Bahnschrift, 'DIN Alternate', 'Arial Narrow', sans-serif" font-size="13" font-weight="700" letter-spacing="2" fill="#fff200">CAUTION // HOT NOZZLE</text>
+<text x="68" y="34" font-family="Bahnschrift, 'DIN Alternate', 'Arial Narrow', sans-serif" font-size="10" letter-spacing="2" fill="#aaa">DO NOT TOUCH · 210°C</text>
+</svg>

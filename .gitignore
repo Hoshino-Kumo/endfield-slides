@@ -1,0 +1,32 @@
+# Personal content and runtime data
+img/uploads/
+img/photos/
+uploads/
+backups/
+exports/
+private/
+data/
+*.sqlite*
+*.db
+*.log
+*.tmp
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+credentials*.json
+
+# Development and OS files
+node_modules/
+test-results/
+playwright-report/
+__pycache__/
+*.pyc
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+work/

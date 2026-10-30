@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,follow">
+<title>Endfield Slides · 素材库</title>
+<link rel="stylesheet" href="css/theme.css">
+<style>
+  body { display: block; padding: 70px 40px 60px; }
+  .lib { max-width: 1280px; margin: 0 auto; background: #fff; padding: 40px 48px 56px; position: relative; }
+  .lib h2 { font-size: 26px; font-weight: 900; margin: 36px 0 6px; display: flex; align-items: center; gap: 10px; }
+  .lib h2:first-of-type { margin-top: 0; }
+  .lib .hint { font-size: 13px; color: #888; margin-bottom: 16px; }
+  .lib code { font: 12px var(--en); background: #f0f0f0; padding: 1px 6px; }
+  .tiles { display: grid; gap: 14px; }
+  .tiles.icons { grid-template-columns: repeat(8, 1fr); }
+  .tiles.decos { grid-template-columns: repeat(4, 1fr); }
+  .tiles.comp { grid-template-columns: repeat(3, 1fr); }
+  .tile { border: 1px solid #ddd; position: relative; display: flex; flex-direction: column; }
+  .tile::before { content: ""; position: absolute; left: -1px; top: -1px; width: 16px; height: 3px; background: var(--ink); }
+  .tile .view {
+    flex: 1; min-height: 110px; display: flex; align-items: center; justify-content: center; padding: 16px;
+    background: linear-gradient(var(--line) 1px, transparent 1px) 0 0 / 20px 20px, linear-gradient(90deg, var(--line) 1px, transparent 1px) 0 0 / 20px 20px;
+    position: relative;
+  }
+  .tiles.decos .view { min-height: 170px; }
+  .tile .view img { max-width: 100%; max-height: 150px; }
+  .tiles.icons .view img { width: 48px; height: 48px; }
+  .tile .cap { font: 700 11px var(--en); letter-spacing: 1px; padding: 6px 10px; border-top: 1px solid #eee; display: flex; justify-content: space-between; }
+  .tile .cap span { color: #999; font-weight: 400; }
+  .tile .view > .hazard, .tile .view > .datatag, .tile .view > .coords, .tile .view > .vline { position: relative; }
+  .swatches { display: flex; gap: 14px; }
+  .sw { width: 150px; }
+  .sw i { display: block; height: 70px; border: 1px solid #ddd; }
+  .sw b { display: block; font: 700 12px var(--en); margin-top: 6px; }
+  .sw span { font: 11px var(--en); color: #888; }
+</style>
+</head>
+<body>
+<div class="toolbar">
+  <span><b>Endfield Slides · 素材库</b>图标 / 装饰图形 / 组件 / 色板 · <a href="index.html" style="color:var(--y)">← 返回编辑器</a></span>
+</div>
+
+<div class="lib">
+  <h2><span class="chip">00</span>色板</h2>
+  <p class="hint">本工具的统一配色。黄色是主色，粉、青只做小面积点缀；深黄 <code>--y-deep</code> 用在浅灰底上的文字或括号。</p>
+  <div class="swatches" id="sw"></div>
+
+  <h2><span class="chip">01</span>图标 <small class="en" style="font-size:12px;color:#999;letter-spacing:2px">ASSETS/ICONS · 64×64</small></h2>
+  <p class="hint">用法：<code>&lt;img class="icon" src="assets/icons/cube.svg"&gt;</code>。线宽统一 3px，个别带黄 / 粉点缀色。</p>
+  <div class="tiles icons" id="icons"></div>
+
+  <h2><span class="chip">02</span>装饰图形 <small class="en" style="font-size:12px;color:#999;letter-spacing:2px">ASSETS/DECO</small></h2>
+  <p class="hint">用法：<code>&lt;img class="deco" src="assets/deco/ruler.svg" style="top:..;left:..;width:.."&gt;</code>。每页 2–3 个就够，别堆满。</p>
+  <div class="tiles decos" id="deco"></div>
+
+  <h2><span class="chip">03</span>HTML 组件</h2>
+  <p class="hint">直接写在页面里的小部件，样式在 theme.css。</p>
+  <div class="tiles comp">
+    <div class="tile"><div class="view"><div class="tag"><span class="marks"><i></i><i></i><i></i></span><span class="no">01</span><span class="name">章节名</span></div></div><div class="cap">.tag<span>页眉章节标签</span></div></div>
+    <div class="tile"><div class="view"><div class="datatag"><b>SECTION</b><span>01 / 04</span></div></div><div class="cap">.datatag<span>数据标签</span></div></div>
+    <div class="tile"><div class="view"><span class="chip">CHIP</span>&nbsp;<span class="chip" style="background:var(--y);color:var(--ink)">CHIP</span></div><div class="cap">.chip<span>小标签</span></div></div>
+    <div class="tile"><div class="view"><div class="hazard" style="width:200px"></div></div><div class="cap">.hazard<span>警示斜纹条</span></div></div>
+    <div class="tile"><div class="view"><div class="coords">X 120.00
+Y 080.00
+Z 000.20</div></div><div class="cap">.coords<span>坐标小字</span></div></div>
+    <div class="tile"><div class="view"><div class="vline" style="height:90px"></div></div><div class="cap">.vline<span>端点竖线</span></div></div>
+    <div class="tile"><div class="view" style="padding:16px 20px"><div class="bars" style="width:100%"><div class="bar" style="margin:0"><span class="k">KEY</span>信息条</div></div></div><div class="cap">.bars .bar<span>信息条</span></div></div>
+    <div class="tile"><div class="view" style="padding:0"><figure class="photo ph" style="position:relative;width:100%;height:150px"><span>IMAGE // 16:9</span></figure></div><div class="cap">.photo.ph<span>图片占位框</span></div></div>
+    <div class="tile"><div class="view"><div class="h2" style="margin:0;font-size:30px">标题<em>高亮</em><span class="brk">[ ]</span></div></div><div class="cap">.h2 em / .brk<span>标题高亮</span></div></div>
+  </div>
+</div>
+
+<script src="js/library.js"></script>
+</body>
+</html>

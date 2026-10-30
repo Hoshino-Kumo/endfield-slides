@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 220" width="220" height="220">
+<g fill="none" stroke="#111" stroke-width="1.5">
+<polygon points="110,20 190,66 190,158 110,204 30,158 30,66"/>
+<polyline points="30,66 110,112 190,66"/><line x1="110" y1="112" x2="110" y2="204"/>
+<g stroke-dasharray="4 4" stroke="#999"><line x1="110" y1="20" x2="110" y2="112"/><line x1="30" y1="158" x2="110" y2="112"/><line x1="190" y1="158" x2="110" y2="112"/></g></g>
+<polygon points="110,112 190,66 190,158 110,204" fill="#fff200" opacity=".55"/>
+<g font-family="Bahnschrift, 'DIN Alternate', 'Arial Narrow', sans-serif" font-size="10" fill="#111"><text x="196" y="116">Z 20.00</text><text x="40" y="200">X 20.00</text><text x="150" y="200">Y 20.00</text></g>
+<g fill="#111"><rect x="106" y="16" width="8" height="8"/><rect x="186" y="62" width="8" height="8"/><rect x="26" y="62" width="8" height="8"/></g>
+</svg>

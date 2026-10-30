@@ -1,0 +1,72 @@
+/* 放映动画：只在 body.present 下生效，预览和编辑器保持静态 */
+@keyframes mf-rise { from { opacity: 0; translate: 0 18px; } to { opacity: 1; translate: 0 0; } }
+@keyframes mf-fade { from { opacity: 0; } to { opacity: 1; } }
+@keyframes mf-wipe { from { clip-path: inset(0 100% 0 0); } to { clip-path: inset(0 0 0 0); } }
+@keyframes mf-reveal { 0% { clip-path: inset(100% -20px 0 -20px); } 88%, 100% { clip-path: inset(0 -20px 0 -20px); } }
+@keyframes mf-nozzle { 0% { top: 100%; opacity: 1; } 88% { top: 0; opacity: 1; } 100% { top: 0; opacity: 0; } }
+@keyframes mf-pop { 0% { opacity: 0; scale: .5; } 70% { opacity: 1; scale: 1.08; } 100% { opacity: 1; scale: 1; } }
+@keyframes mf-in { from { opacity: 0; translate: 80px 0; } to { opacity: 1; translate: 0 0; } }
+@keyframes mf-in-back { from { opacity: 0; translate: -80px 0; } to { opacity: 1; translate: 0 0; } }
+@keyframes mf-scanbar { from { left: -20px; } to { left: 100%; } }
+@keyframes mf-line { from { scale: 0 1; } to { scale: 1 1; } }
+@keyframes mf-spin { to { rotate: 360deg; } }
+@keyframes mf-flow { to { background-position: 195px 0; } }
+@keyframes mf-blink { 0%, 100% { opacity: 1; } 50% { opacity: .35; } }
+
+.s-scan { display: none; }
+
+/* ---------- 1. 翻页过渡（data-transition = slide | scan | fade | none） ---------- */
+body.present .slide.t-slide { animation: mf-in .45s cubic-bezier(.2, .7, .2, 1) both; }
+body.present .slide.t-slide.back { animation-name: mf-in-back; }
+body.present .slide.t-fade { animation: mf-fade .45s ease both; }
+body.present .slide.t-scan { animation: mf-wipe .6s cubic-bezier(.6, 0, .2, 1) both; }
+body.present .slide.t-scan .s-scan {
+  display: block; position: absolute; top: 0; bottom: 0; width: 16px; z-index: 5;
+  background: var(--y); box-shadow: 0 0 30px 8px rgba(255, 242, 0, .7);
+  animation: mf-scanbar .6s cubic-bezier(.6, 0, .2, 1) both;
+}
+
+/* ---------- 2. 元素依次入场（data-anim="off" 关闭） ---------- */
+body.present .slide.play [style*="--i"] {
+  animation: mf-rise .55s cubic-bezier(.2, .7, .2, 1) both;
+  animation-delay: calc(min(var(--i), 14) * 70ms + 200ms);
+}
+body.present .slide.play .band { animation: mf-wipe .8s cubic-bezier(.6, 0, .2, 1) .05s both; }
+body.present .slide.play .ghost { animation: mf-fade 1.4s ease .1s both; }
+
+/* ---------- 3. 打印主题动效 ---------- */
+/* 主标题：方括号弹出，文字逐层“打印”出来 */
+body.present .slide.play .t2 .br { animation: mf-pop .4s cubic-bezier(.3, 1.4, .5, 1) .35s both; }
+body.present .slide.play .t2 .txt { position: relative; animation: mf-reveal 1.2s cubic-bezier(.45, 0, .25, 1) .6s both; }
+/* 章节大编号同样逐层显现 */
+body.present .slide.play.section .num { animation: mf-reveal 1.2s cubic-bezier(.45, 0, .25, 1) .15s both; }
+/* 显现边缘的“喷头”光线，跟着文字从下往上走 */
+body.present .slide.play .t2 .txt::after,
+body.present .slide.play.section .num::after {
+  content: ""; position: absolute; left: -8px; right: -8px; height: 4px;
+  background: linear-gradient(var(--ink) 0 1px, var(--y) 1px);
+  box-shadow: 0 0 14px 3px rgba(255, 242, 0, .85);
+  animation: mf-nozzle 1.2s cubic-bezier(.45, 0, .25, 1) .6s both;
+}
+body.present .slide.play.section .num::after { animation-delay: .15s; }
+/* 时间线从左往右画出 */
+body.present .slide.play .tl::before { transform-origin: left center; animation: mf-line 1.1s cubic-bezier(.6, 0, .2, 1) .3s both; }
+body.present .slide.play .tl li.on .dot { animation: mf-blink 1.2s ease-in-out 1.4s infinite; }
+/* 大数字滚动由 slides.js 处理；打印机、状态灯的动效版素材由 slides.js 替换 */
+
+/* ---------- 4. 常驻小细节 ---------- */
+body.present .slide img.deco[src*="crosshair"] { animation: mf-spin 18s linear infinite; }
+body.present .slide.play img.deco[src*="crosshair"] {
+  animation: mf-rise .55s cubic-bezier(.2, .7, .2, 1) both, mf-spin 18s linear infinite;
+  animation-delay: calc(min(var(--i, 0), 14) * 70ms + 200ms), 0s;
+}
+body.present .slide .hazard { animation: mf-flow 6s linear infinite; }
+body.present .slide.play .hazard {
+  animation: mf-rise .55s cubic-bezier(.2, .7, .2, 1) both, mf-flow 6s linear infinite;
+  animation-delay: calc(min(var(--i, 0), 14) * 70ms + 200ms), 0s;
+}
+body.present .slide img.deco[src*="chevrons"] { animation: mf-blink 1.6s ease-in-out infinite; }
+body.present .slide.play img.deco[src*="chevrons"] {
+  animation: mf-rise .55s cubic-bezier(.2, .7, .2, 1) both, mf-blink 1.6s ease-in-out infinite;
+  animation-delay: calc(min(var(--i, 0), 14) * 70ms + 200ms), 1.2s;
+}
